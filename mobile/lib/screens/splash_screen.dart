@@ -27,7 +27,8 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => isLoggedIn ? const DashboardScreen() : const LoginScreen(),
+          builder: (_) =>
+              isLoggedIn ? const DashboardScreen() : const LoginScreen(),
         ),
       );
     }
@@ -42,14 +43,9 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/images/logo.png',
-              width: 120,
-              height: 120,
-              errorBuilder: (context, error, stackTrace) => const Icon(
-                Icons.local_laundry_service,
-                size: 120,
-                color: Colors.white,
-              ),
+              'assets/images/Logo.png',
+              width: 150,
+              height: 150,
             ),
             const SizedBox(height: 16),
             const Text(
