@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
-import 'auth/login_screen.dart';
+import 'onboarding_screen.dart';
 import 'dashboard/dashboard_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
         context,
         MaterialPageRoute(
           builder: (_) =>
-              isLoggedIn ? const DashboardScreen() : const LoginScreen(),
+              isLoggedIn ? const DashboardScreen() : const OnboardingScreen(),
         ),
       );
     }
@@ -42,11 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/images/Logo.png',
-              width: 150,
-              height: 150,
-            ),
+            Image.asset('assets/images/Logo.png', width: 150, height: 150),
             const SizedBox(height: 16),
             const Text(
               'ayo cuci',
@@ -60,10 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const SizedBox(height: 8),
             const Text(
               'Aplikasi Laundry Digital Indonesia',
-              style: TextStyle(
-                color: Colors.white70,
-                fontSize: 14,
-              ),
+              style: TextStyle(color: Colors.white70, fontSize: 14),
             ),
           ],
         ),

@@ -9,6 +9,6 @@ class AppColors {
 }
 
 class AppConstants {
-  static const baseUrl = 'http://10.0.2.2:8080'; // untuk Android emulator
+  static const baseUrl = 'http://192.168.100.47:8080'; // untuk Android emulator
   // static const baseUrl = 'http://localhost:8080'; // untuk web/desktop
 }
