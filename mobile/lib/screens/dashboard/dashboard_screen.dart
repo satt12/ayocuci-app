@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../utils/constants.dart';
+import '../setting_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -12,10 +13,9 @@ class DashboardScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // Header orange
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
                 decoration: const BoxDecoration(
                   color: Color(0xFFE8572A),
                   borderRadius: BorderRadius.only(
@@ -31,10 +31,18 @@ class DashboardScreen extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Image.asset(
-                              'assets/images/Logo_2.png',
-                              width: 40,
-                              height: 40,
+                            Container(
+                              width: 44,
+                              height: 44,
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.2),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              padding: const EdgeInsets.all(6),
+                              child: Image.asset(
+                                'assets/images/Logo_2.png',
+                                color: Colors.white,
+                              ),
                             ),
                             const SizedBox(width: 10),
                             const Column(
@@ -45,12 +53,13 @@ class DashboardScreen extends StatelessWidget {
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 16,
+                                    fontSize: 15,
                                   ),
                                 ),
                                 Row(
                                   children: [
                                     Icon(Icons.location_on, color: Colors.white70, size: 12),
+                                    SizedBox(width: 2),
                                     Text(
                                       'Jakarta, Indonesia',
                                       style: TextStyle(color: Colors.white70, fontSize: 12),
@@ -61,14 +70,26 @@ class DashboardScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const Icon(Icons.notifications_outlined, color: Colors.white, size: 28),
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.2),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: const Icon(
+                            Icons.notifications_outlined,
+                            color: Colors.white,
+                            size: 22,
+                          ),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 20),
                     const Center(
                       child: Text(
                         'Pendapatan Hari Ini',
-                        style: TextStyle(color: Colors.white70, fontSize: 14),
+                        style: TextStyle(color: Colors.white70, fontSize: 13),
                       ),
                     ),
                     const Center(
@@ -76,7 +97,7 @@ class DashboardScreen extends StatelessWidget {
                         'IDR 10.000.000',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 32,
+                          fontSize: 30,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -85,31 +106,23 @@ class DashboardScreen extends StatelessWidget {
                     const Center(
                       child: Text(
                         'senin, 17 november 2025 | 10:45',
-                        style: TextStyle(color: Colors.white70, fontSize: 12),
+                        style: TextStyle(color: Colors.white70, fontSize: 11),
                       ),
                     ),
                     const SizedBox(height: 16),
-                    // Stats row
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.15),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          _StatItem(label: 'Penjualan', value: 'IDR 10.000.000', icon: Icons.favorite_border),
-                          _StatItem(label: 'Pengeluaran', value: 'IDR 5.000.000', icon: Icons.receipt_long),
-                          _StatItem(label: 'Transaksi', value: '250', icon: Icons.swap_horiz),
-                        ],
-                      ),
+                    Row(
+                      children: [
+                        Expanded(child: _StatCard(label: 'Penjualan', value: 'IDR 10.000.000', icon: Icons.favorite_border)),
+                        const SizedBox(width: 8),
+                        Expanded(child: _StatCard(label: 'Pengeluaran', value: 'IDR 5.000.000', icon: Icons.receipt_long)),
+                        const SizedBox(width: 8),
+                        Expanded(child: _StatCard(label: 'Transaksi', value: '250', icon: Icons.swap_horiz)),
+                      ],
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 16),
-              // Menu grid
+              const SizedBox(height: 12),
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 16),
                 padding: const EdgeInsets.all(16),
@@ -121,8 +134,9 @@ class DashboardScreen extends StatelessWidget {
                   crossAxisCount: 3,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  mainAxisSpacing: 16,
-                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8,
+                  childAspectRatio: 0.9,
                   children: const [
                     _MenuItem(label: 'Layanan', icon: 'assets/icons/Icon_layanan.png'),
                     _MenuItem(label: 'Pelanggan', icon: 'assets/icons/Icon_pelanggan.png'),
@@ -133,73 +147,48 @@ class DashboardScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 16),
-              // Promo section
+              const SizedBox(height: 12),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(Icons.person, color: AppColors.primaryColor, size: 16),
-                          const SizedBox(width: 4),
-                          Text('Promo', style: TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.w500)),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 12),
+                    _SectionLabel(icon: Icons.local_offer_outlined, title: 'Promo'),
+                    const SizedBox(height: 10),
                     SizedBox(
-                      height: 120,
+                      height: 130,
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                         children: [
                           _PromoCard(image: 'assets/images/Promo_oNE.png'),
-                          const SizedBox(width: 8),
+                          const SizedBox(width: 10),
                           _PromoCard(image: 'assets/images/Promo_tWO.png'),
-                          const SizedBox(width: 8),
+                          const SizedBox(width: 10),
                           _PromoCard(image: 'assets/images/Promo_three.png'),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(Icons.person, color: AppColors.primaryColor, size: 16),
-                          const SizedBox(width: 4),
-                          Text('Informasi', style: TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.w500)),
+                          const SizedBox(width: 10),
+                          _PromoCard(image: 'assets/images/Promo_oNE.png'),
                         ],
                       ),
                     ),
                     const SizedBox(height: 12),
+                    _SectionLabel(icon: Icons.info_outline, title: 'Informasi'),
+                    const SizedBox(height: 10),
                     SizedBox(
-                      height: 120,
+                      height: 130,
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                         children: [
-                          _PromoCard(image: 'assets/images/Promo_oNE.png'),
-                          const SizedBox(width: 8),
                           _PromoCard(image: 'assets/images/Promo_tWO.png'),
-                          const SizedBox(width: 8),
+                          const SizedBox(width: 10),
                           _PromoCard(image: 'assets/images/Promo_three.png'),
+                          const SizedBox(width: 10),
+                          _PromoCard(image: 'assets/images/Promo_oNE.png'),
+                          const SizedBox(width: 10),
+                          _PromoCard(image: 'assets/images/Promo_tWO.png'),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 80),
+                    const SizedBox(height: 90),
                   ],
                 ),
               ),
@@ -212,34 +201,86 @@ class DashboardScreen extends StatelessWidget {
         selectedItemColor: AppColors.primaryColor,
         unselectedItemColor: Colors.grey,
         currentIndex: 0,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        onTap: (index) {
+          if (index == 4) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const SettingScreen()),
+            );
+          }
+        },
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
-          BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: 'Status'),
-          BottomNavigationBarItem(icon: Icon(Icons.add_circle, size: 40), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: 'Laporan'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Setting'),
+          BottomNavigationBarItem(icon: Icon(Icons.home_outlined), activeIcon: Icon(Icons.home), label: 'Beranda'),
+          BottomNavigationBarItem(icon: Icon(Icons.list_alt_outlined), activeIcon: Icon(Icons.list_alt), label: 'Status'),
+          BottomNavigationBarItem(icon: Icon(Icons.add_circle, size: 0), label: 'Pesanan'),
+          BottomNavigationBarItem(icon: Icon(Icons.bar_chart_outlined), activeIcon: Icon(Icons.bar_chart), label: 'Laporan'),
+          BottomNavigationBarItem(icon: Icon(Icons.settings_outlined), activeIcon: Icon(Icons.settings), label: 'Setting'),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: AppColors.primaryColor,
+        shape: const CircleBorder(),
+        child: const Icon(Icons.add, color: Colors.white, size: 28),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
+  }
+}
+
+class _SectionLabel extends StatelessWidget {
+  final IconData icon;
+  final String title;
+
+  const _SectionLabel({required this.icon, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, color: AppColors.primaryColor, size: 16),
+          const SizedBox(width: 6),
+          Text(title, style: TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.w600, fontSize: 13)),
         ],
       ),
     );
   }
 }
 
-class _StatItem extends StatelessWidget {
+class _StatCard extends StatelessWidget {
   final String label;
   final String value;
   final IconData icon;
 
-  const _StatItem({required this.label, required this.value, required this.icon});
+  const _StatCard({required this.label, required this.value, required this.icon});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Icon(icon, color: Colors.white70, size: 16),
-        const SizedBox(height: 4),
-        Text(label, style: const TextStyle(color: Colors.white70, fontSize: 10)),
-        Text(value, style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold)),
-      ],
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.15),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.3), width: 0.5),
+      ),
+      child: Column(
+        children: [
+          Icon(icon, color: Colors.white, size: 18),
+          const SizedBox(height: 4),
+          Text(label, style: const TextStyle(color: Colors.white70, fontSize: 10)),
+          const SizedBox(height: 2),
+          Text(value, style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+        ],
+      ),
     );
   }
 }
@@ -252,13 +293,16 @@ class _MenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.asset(icon, width: 56, height: 56),
-        const SizedBox(height: 8),
-        Text(label, style: const TextStyle(fontSize: 12), textAlign: TextAlign.center),
-      ],
+    return GestureDetector(
+      onTap: () {},
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(icon, width: 60, height: 60),
+          const SizedBox(height: 6),
+          Text(label, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w500), textAlign: TextAlign.center),
+        ],
+      ),
     );
   }
 }
@@ -272,12 +316,7 @@ class _PromoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
-      child: Image.asset(
-        image,
-        width: 160,
-        height: 120,
-        fit: BoxFit.cover,
-      ),
+      child: Image.asset(image, width: 180, height: 130, fit: BoxFit.cover),
     );
   }
 }

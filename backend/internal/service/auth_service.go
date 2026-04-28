@@ -25,13 +25,11 @@ func NewAuthService(userRepo repository.UserRepository) AuthService {
 }
 
 func (s *authService) Register(req models.RegisterRequest) (*models.User, error) {
-	// Cek email sudah ada
 	existing, _ := s.userRepo.FindByEmail(req.Email)
 	if existing != nil {
 		return nil, errors.New("email sudah terdaftar")
 	}
 
-	// Hash password
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
 	if err != nil {
 		return nil, err
@@ -52,18 +50,15 @@ func (s *authService) Register(req models.RegisterRequest) (*models.User, error)
 }
 
 func (s *authService) Login(req models.LoginRequest) (string, error) {
-	// Cari user by email
 	user, err := s.userRepo.FindByEmail(req.Email)
 	if err != nil {
 		return "", errors.New("email atau password salah")
 	}
 
-	// Cek password
 	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(req.Password)); err != nil {
 		return "", errors.New("email atau password salah")
 	}
 
-	// Buat JWT token
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"user_id": user.ID,
 		"email":   user.Email,

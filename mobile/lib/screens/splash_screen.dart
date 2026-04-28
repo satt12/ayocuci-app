@@ -42,17 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/Logo.png', width: 150, height: 150),
-            const SizedBox(height: 16),
-            const Text(
-              'ayo cuci',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 2,
-              ),
-            ),
+            Image.asset('assets/images/Logo_2.png', width: 150, height: 150),
             const SizedBox(height: 8),
             const Text(
               'Aplikasi Laundry Digital Indonesia',
