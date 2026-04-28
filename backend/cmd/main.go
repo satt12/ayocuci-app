@@ -6,6 +6,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	"github.com/satt12/ayocuci-app/backend/config"
+	"github.com/satt12/ayocuci-app/backend/internal/models"
 )
 
 func main() {
@@ -13,6 +15,12 @@ func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Println("No .env file found")
 	}
+
+	// Koneksi database
+	config.ConnectDatabase()
+
+	// Auto migrate tabel
+	config.DB.AutoMigrate(&models.User{})
 
 	// Init Gin
 	r := gin.Default()
