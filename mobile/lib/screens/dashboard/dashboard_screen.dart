@@ -39,10 +39,7 @@ class DashboardScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               padding: const EdgeInsets.all(6),
-                              child: Image.asset(
-                                'assets/images/Logo_2.png',
-                                color: Colors.white,
-                              ),
+                              child: Image.asset('assets/images/Logo.png'),
                             ),
                             const SizedBox(width: 10),
                             const Column(
@@ -58,11 +55,18 @@ class DashboardScreen extends StatelessWidget {
                                 ),
                                 Row(
                                   children: [
-                                    Icon(Icons.location_on, color: Colors.white70, size: 12),
+                                    Icon(
+                                      Icons.location_on,
+                                      color: Colors.white70,
+                                      size: 12,
+                                    ),
                                     SizedBox(width: 2),
                                     Text(
                                       'Jakarta, Indonesia',
-                                      style: TextStyle(color: Colors.white70, fontSize: 12),
+                                      style: TextStyle(
+                                        color: Colors.white70,
+                                        fontSize: 12,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -112,11 +116,29 @@ class DashboardScreen extends StatelessWidget {
                     const SizedBox(height: 16),
                     Row(
                       children: [
-                        Expanded(child: _StatCard(label: 'Penjualan', value: 'IDR 10.000.000', icon: Icons.favorite_border)),
+                        Expanded(
+                          child: _StatCard(
+                            label: 'Penjualan',
+                            value: 'IDR 10.000.000',
+                            icon: Icons.favorite_border,
+                          ),
+                        ),
                         const SizedBox(width: 8),
-                        Expanded(child: _StatCard(label: 'Pengeluaran', value: 'IDR 5.000.000', icon: Icons.receipt_long)),
+                        Expanded(
+                          child: _StatCard(
+                            label: 'Pengeluaran',
+                            value: 'IDR 5.000.000',
+                            icon: Icons.receipt_long,
+                          ),
+                        ),
                         const SizedBox(width: 8),
-                        Expanded(child: _StatCard(label: 'Transaksi', value: '250', icon: Icons.swap_horiz)),
+                        Expanded(
+                          child: _StatCard(
+                            label: 'Transaksi',
+                            value: '250',
+                            icon: Icons.swap_horiz,
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -138,12 +160,30 @@ class DashboardScreen extends StatelessWidget {
                   crossAxisSpacing: 8,
                   childAspectRatio: 0.9,
                   children: const [
-                    _MenuItem(label: 'Layanan', icon: 'assets/icons/Icon_layanan.png'),
-                    _MenuItem(label: 'Pelanggan', icon: 'assets/icons/Icon_pelanggan.png'),
-                    _MenuItem(label: 'Karyawan', icon: 'assets/icons/Icon_karyawan.png'),
-                    _MenuItem(label: 'Pengeluaran', icon: 'assets/icons/Icon_pengeluaran.png'),
-                    _MenuItem(label: 'Laporan', icon: 'assets/icons/Icon_laporan.png'),
-                    _MenuItem(label: 'Manage Outlet', icon: 'assets/icons/Icon_manageoutlet.png'),
+                    _MenuItem(
+                      label: 'Layanan',
+                      icon: 'assets/icons/Icon_layanan.png',
+                    ),
+                    _MenuItem(
+                      label: 'Pelanggan',
+                      icon: 'assets/icons/Icon_pelanggan.png',
+                    ),
+                    _MenuItem(
+                      label: 'Karyawan',
+                      icon: 'assets/icons/Icon_karyawan.png',
+                    ),
+                    _MenuItem(
+                      label: 'Pengeluaran',
+                      icon: 'assets/icons/Icon_pengeluaran.png',
+                    ),
+                    _MenuItem(
+                      label: 'Laporan',
+                      icon: 'assets/icons/Icon_laporan.png',
+                    ),
+                    _MenuItem(
+                      label: 'Manage Outlet',
+                      icon: 'assets/icons/Icon_manageoutlet.png',
+                    ),
                   ],
                 ),
               ),
@@ -153,7 +193,10 @@ class DashboardScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _SectionLabel(icon: Icons.local_offer_outlined, title: 'Promo'),
+                    _SectionLabel(
+                      icon: Icons.local_offer_outlined,
+                      title: 'Promo',
+                    ),
                     const SizedBox(height: 10),
                     SizedBox(
                       height: 130,
@@ -212,11 +255,30 @@ class DashboardScreen extends StatelessWidget {
           }
         },
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home_outlined), activeIcon: Icon(Icons.home), label: 'Beranda'),
-          BottomNavigationBarItem(icon: Icon(Icons.list_alt_outlined), activeIcon: Icon(Icons.list_alt), label: 'Status'),
-          BottomNavigationBarItem(icon: Icon(Icons.add_circle, size: 0), label: 'Pesanan'),
-          BottomNavigationBarItem(icon: Icon(Icons.bar_chart_outlined), activeIcon: Icon(Icons.bar_chart), label: 'Laporan'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings_outlined), activeIcon: Icon(Icons.settings), label: 'Setting'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            activeIcon: Icon(Icons.home),
+            label: 'Beranda',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list_alt_outlined),
+            activeIcon: Icon(Icons.list_alt),
+            label: 'Status',
+          ),
+          BottomNavigationBarItem(
+            icon: const SizedBox(height: 25),
+            label: 'Pesanan',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bar_chart_outlined),
+            activeIcon: Icon(Icons.bar_chart),
+            label: 'Laporan',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings_outlined),
+            activeIcon: Icon(Icons.settings),
+            label: 'Setting',
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -249,7 +311,14 @@ class _SectionLabel extends StatelessWidget {
         children: [
           Icon(icon, color: AppColors.primaryColor, size: 16),
           const SizedBox(width: 6),
-          Text(title, style: TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.w600, fontSize: 13)),
+          Text(
+            title,
+            style: TextStyle(
+              color: AppColors.primaryColor,
+              fontWeight: FontWeight.w600,
+              fontSize: 13,
+            ),
+          ),
         ],
       ),
     );
@@ -261,7 +330,11 @@ class _StatCard extends StatelessWidget {
   final String value;
   final IconData icon;
 
-  const _StatCard({required this.label, required this.value, required this.icon});
+  const _StatCard({
+    required this.label,
+    required this.value,
+    required this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -270,15 +343,29 @@ class _StatCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.3), width: 0.5),
+        border: Border.all(
+          color: Colors.white.withValues(alpha: 0.3),
+          width: 0.5,
+        ),
       ),
       child: Column(
         children: [
           Icon(icon, color: Colors.white, size: 18),
           const SizedBox(height: 4),
-          Text(label, style: const TextStyle(color: Colors.white70, fontSize: 10)),
+          Text(
+            label,
+            style: const TextStyle(color: Colors.white70, fontSize: 10),
+          ),
           const SizedBox(height: 2),
-          Text(value, style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+          Text(
+            value,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 10,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
         ],
       ),
     );
@@ -300,7 +387,11 @@ class _MenuItem extends StatelessWidget {
         children: [
           Image.asset(icon, width: 60, height: 60),
           const SizedBox(height: 6),
-          Text(label, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w500), textAlign: TextAlign.center),
+          Text(
+            label,
+            style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w500),
+            textAlign: TextAlign.center,
+          ),
         ],
       ),
     );
