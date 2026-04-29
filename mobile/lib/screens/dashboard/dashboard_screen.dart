@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../utils/constants.dart';
-import '../setting_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -148,10 +147,6 @@ class DashboardScreen extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 16),
                 padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                ),
                 child: GridView.count(
                   crossAxisCount: 3,
                   shrinkWrap: true,
@@ -247,12 +242,8 @@ class DashboardScreen extends StatelessWidget {
         showSelectedLabels: true,
         showUnselectedLabels: true,
         onTap: (index) {
-          if (index == 4) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const SettingScreen()),
-            );
-          }
+          // Fungsi dikosongkan.
+          // Klik pada menu Setting (atau menu lain) tidak akan memicu perpindahan halaman.
         },
         items: const [
           BottomNavigationBarItem(
@@ -265,10 +256,7 @@ class DashboardScreen extends StatelessWidget {
             activeIcon: Icon(Icons.list_alt),
             label: 'Status',
           ),
-          BottomNavigationBarItem(
-            icon: const SizedBox(height: 25),
-            label: 'Pesanan',
-          ),
+          BottomNavigationBarItem(icon: SizedBox(height: 25), label: 'Pesanan'),
           BottomNavigationBarItem(
             icon: Icon(Icons.bar_chart_outlined),
             activeIcon: Icon(Icons.bar_chart),
